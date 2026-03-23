@@ -1,23 +1,24 @@
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
 app.post("/learn", (req, res) => {
-  const topic = req.body.topic;
+  const { topic } = req.body;
 
-  const responses = {
-    science: "Science is the study of the world around us 🔬",
-    math: "Math is all about numbers and logic ➕",
-    history: "History teaches us about the past 📜",
-    nature: "Nature includes plants, animals, and Earth 🌿",
-    space: "Space is full of stars and planets 🚀"
+  const data = {
+    science: "Science explains how the world works 🔬",
+    math: "Math is about numbers and patterns ➕",
+    history: "History tells us about the past 📜",
+    nature: "Nature includes plants and animals 🌿",
+    space: "Space has planets and stars 🚀"
   };
 
   res.json({
-    result: responses[topic] || "No topic found"
+    result: data[topic] || "Topic not found"
   });
 });
 
@@ -26,5 +27,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("Server running on port 3000");
+  console.log("Server running");
 });
